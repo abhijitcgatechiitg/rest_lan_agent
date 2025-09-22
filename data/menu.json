@@ -1,0 +1,66 @@
+{
+  "version": "v1",
+  "currency": "INR",
+  "categories": [
+    {
+      "name": "Pizzas",
+      "items": [
+        {
+          "item_id": "PZ01",
+          "name": "Margherita",
+          "price": 249,
+          "options": {
+            "size": [
+              "regular",
+              "large"
+            ]
+          },
+          "is_available": true
+        },
+        {
+          "item_id": "PZ02",
+          "name": "Farmhouse",
+          "price": 329,
+          "options": {
+            "size": [
+              "regular",
+              "large"
+            ]
+          },
+          "is_available": true
+        }
+      ]
+    },
+    {
+      "name": "Sides",
+      "items": [
+        {
+          "item_id": "SD01",
+          "name": "Garlic Bread",
+          "price": 119,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "SD02",
+          "name": "Cheesy Dip",
+          "price": 49,
+          "options": {},
+          "is_available": true
+        }
+      ]
+    },
+    {
+      "name": "Beverages",
+      "items": [
+        {
+          "item_id": "BV01",
+          "name": "Coke",
+          "price": 49,
+          "options": {},
+          "is_available": true
+        }
+      ]
+    }
+  ]
+}
