@@ -10,7 +10,7 @@ from user_tools.update_cart import update_cart
 from user_tools.place_order import place_order, save_order_history
 
 load_dotenv()
-CURRENCY = os.getenv("CURRENCY", "INR")
+CURRENCY = os.getenv("CURRENCY", "INR") # set currency to USD
 SYSTEM_PROMPT = open("agent/system_prompt_restaurant.txt", encoding="utf-8").read()
 
 def md_cart(cart, subtotal, currency):
