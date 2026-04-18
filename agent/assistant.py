@@ -1,6 +1,6 @@
 import os
 from langchain_anthropic import ChatAnthropic
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import HumanMessage, SystemMessage
 
 def build_llm():
     use_llm = os.getenv("USE_LLM", "false").lower() == "true"
@@ -13,10 +13,10 @@ def phrase(system: str, content: str) -> str:
     llm = build_llm()
     if llm is None:
         return content  # fallback if Claude is disabled
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", system),
-        ("human", "{content}")
+    # Use explicit message objects to avoid prompt-template parsing of braces
+    # present in system prompt text (e.g., tool signatures with {} and []).
+    res = llm.invoke([
+        SystemMessage(content=system),
+        HumanMessage(content=content),
     ])
-    chain = prompt | llm
-    res = chain.invoke({"content": content})
     return res.content if hasattr(res, "content") else str(res)
