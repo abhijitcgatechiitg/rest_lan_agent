@@ -1,0 +1,14 @@
+WOCC_Paper/
+.env
+.venv/
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+data/order_history.json
+# Experiment outputs
+validation_results/
+experiments/
+results/
+*.log
+.pytest_cache/
+tests/__pycache__/
