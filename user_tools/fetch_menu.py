@@ -14,6 +14,7 @@ def fetch_menu(categories: Optional[List[str]] = None) -> Dict:
         for it in cat.get("items", []):
             it_copy = it.copy()
             it_copy["category"] = cat["name"]
+            it_copy["category_description"] = cat.get("description", "")
             items.append(it_copy)
     return {
         "menu_version": data.get("version", "v1"),

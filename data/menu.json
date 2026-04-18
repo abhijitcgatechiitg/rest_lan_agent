@@ -1,62 +1,251 @@
 {
-  "version": "v1",
-  "currency": "INR",
+  "version": "v2",
+  "currency": "USD",
   "categories": [
     {
-      "name": "Pizzas",
+      "name": "Original Meals",
+      "description": "Each meal includes Waffle Fries and a Drink",
       "items": [
         {
-          "item_id": "PZ01",
-          "name": "Margherita",
-          "price": 249,
+          "item_id": "OM01",
+          "name": "Classic Crispy Sandwich Meal",
+          "description": "Hand-breaded crispy chicken on a toasted bun with pickles. Includes Waffle Fries + Drink.",
+          "price": 8.99,
+          "calories": 1030,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM02",
+          "name": "Classic Crispy Deluxe Meal",
+          "description": "Crispy chicken with lettuce, tomato, and American cheese on a toasted bun. Includes Waffle Fries + Drink.",
+          "price": 9.49,
+          "calories": 1090,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM03",
+          "name": "Fiery Crispy Sandwich Meal",
+          "description": "Spicy-seasoned crispy chicken on a toasted bun with pickles. Includes Waffle Fries + Drink.",
+          "price": 9.25,
+          "calories": 1050,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM04",
+          "name": "Fiery Crispy Deluxe Meal",
+          "description": "Spicy crispy chicken with lettuce, tomato, and pepper jack cheese. Includes Waffle Fries + Drink.",
+          "price": 9.99,
+          "calories": 1120,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM05",
+          "name": "Golden Tenders 8pc Meal",
+          "description": "8 hand-breaded crispy chicken tenders. Includes Waffle Fries + Drink.",
+          "price": 8.99,
+          "calories": 860,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM06",
+          "name": "Golden Tenders 12pc Meal",
+          "description": "12 hand-breaded crispy chicken tenders. Includes Waffle Fries + Drink.",
+          "price": 10.99,
+          "calories": 990,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM07",
+          "name": "Crispy Strips 3pc Meal",
+          "description": "3 hand-breaded crispy chicken strips. Includes Waffle Fries + Drink.",
+          "price": 9.49,
+          "calories": 910,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "OM08",
+          "name": "Crispy Strips 4pc Meal",
+          "description": "4 hand-breaded crispy chicken strips. Includes Waffle Fries + Drink.",
+          "price": 10.75,
+          "calories": 1020,
+          "options": {},
+          "is_available": true
+        }
+      ]
+    },
+    {
+      "name": "Kids Meals",
+      "description": "Includes a small side and drink — perfect for little ones",
+      "items": [
+        {
+          "item_id": "KM01",
+          "name": "Crispy Bites Kids Meal",
+          "description": "5pc bite-sized crispy chicken with small Waffle Fries and choice of drink.",
+          "price": 5.99,
+          "calories": 530,
           "options": {
-            "size": [
-              "regular",
-              "large"
-            ]
+            "side": ["Waffle Fries", "Fruit Cup", "Applesauce"],
+            "drink": ["Milk", "Apple Juice", "Lemonade"]
           },
           "is_available": true
         },
         {
-          "item_id": "PZ02",
-          "name": "Farmhouse",
-          "price": 329,
+          "item_id": "KM02",
+          "name": "Grilled Bites Kids Meal",
+          "description": "5pc bite-sized grilled chicken with small Waffle Fries and choice of drink.",
+          "price": 6.49,
+          "calories": 280,
           "options": {
-            "size": [
-              "regular",
-              "large"
-            ]
+            "side": ["Waffle Fries", "Fruit Cup", "Applesauce"],
+            "drink": ["Milk", "Apple Juice", "Lemonade"]
+          },
+          "is_available": true
+        },
+        {
+          "item_id": "KM03",
+          "name": "Mini Strips Kids Meal",
+          "description": "2pc crispy chicken strips with small Waffle Fries and choice of drink.",
+          "price": 6.25,
+          "calories": 440,
+          "options": {
+            "side": ["Waffle Fries", "Fruit Cup", "Applesauce"],
+            "drink": ["Milk", "Apple Juice", "Lemonade"]
           },
           "is_available": true
         }
       ]
     },
     {
-      "name": "Sides",
+      "name": "Waffle Fries",
+      "description": "Golden waffle-cut fries cooked in canola oil",
       "items": [
         {
-          "item_id": "SD01",
-          "name": "Garlic Bread",
-          "price": 119,
+          "item_id": "WF01",
+          "name": "Waffle Fries Medium",
+          "description": "Medium waffle-cut fries.",
+          "price": 2.49,
+          "calories": 420,
           "options": {},
           "is_available": true
         },
         {
-          "item_id": "SD02",
-          "name": "Cheesy Dip",
-          "price": 49,
+          "item_id": "WF02",
+          "name": "Waffle Fries Large",
+          "description": "Large waffle-cut fries.",
+          "price": 2.99,
+          "calories": 600,
           "options": {},
           "is_available": true
         }
       ]
     },
     {
-      "name": "Beverages",
+      "name": "Drinks",
+      "description": "Refreshing beverages to complete your meal",
       "items": [
         {
-          "item_id": "BV01",
-          "name": "Coke",
-          "price": 49,
+          "item_id": "DK01",
+          "name": "Sweet Tea Medium",
+          "description": "Freshly-brewed sweet or unsweet tea. Medium.",
+          "price": 2.25,
+          "calories": 120,
+          "options": {"style": ["Sweet", "Unsweet"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK02",
+          "name": "Sweet Tea Large",
+          "description": "Freshly-brewed sweet or unsweet tea. Large.",
+          "price": 2.65,
+          "calories": 170,
+          "options": {"style": ["Sweet", "Unsweet"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK03",
+          "name": "Fresh Lemonade Medium",
+          "description": "Hand-squeezed lemonade, original or strawberry. Medium.",
+          "price": 2.59,
+          "calories": 220,
+          "options": {"style": ["Original", "Strawberry", "Diet"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK04",
+          "name": "Fresh Lemonade Large",
+          "description": "Hand-squeezed lemonade, original or strawberry. Large.",
+          "price": 2.99,
+          "calories": 300,
+          "options": {"style": ["Original", "Strawberry", "Diet"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK05",
+          "name": "Sunny Blend Medium",
+          "description": "Signature lemonade and sweet tea blend. Medium.",
+          "price": 2.59,
+          "calories": 170,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "DK06",
+          "name": "Sunny Blend Large",
+          "description": "Signature lemonade and sweet tea blend. Large.",
+          "price": 2.99,
+          "calories": 270,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "DK07",
+          "name": "Fountain Drink Medium",
+          "description": "Cola, Diet Cola, Sprite, or Lemonade. Medium.",
+          "price": 2.25,
+          "calories": 210,
+          "options": {"flavor": ["Cola", "Diet Cola", "Sprite", "Lemonade"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK08",
+          "name": "Fountain Drink Large",
+          "description": "Cola, Diet Cola, Sprite, or Lemonade. Large.",
+          "price": 2.65,
+          "calories": 340,
+          "options": {"flavor": ["Cola", "Diet Cola", "Sprite", "Lemonade"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK09",
+          "name": "Cold Brew Coffee",
+          "description": "Smooth cold brew, original or vanilla.",
+          "price": 3.29,
+          "calories": 15,
+          "options": {"flavor": ["Original", "Vanilla"]},
+          "is_available": true
+        },
+        {
+          "item_id": "DK10",
+          "name": "Orange Juice",
+          "description": "Fresh-squeezed orange juice.",
+          "price": 2.99,
+          "calories": 160,
+          "options": {},
+          "is_available": true
+        },
+        {
+          "item_id": "DK11",
+          "name": "Bottled Water",
+          "description": "Purified bottled water.",
+          "price": 1.99,
+          "calories": 0,
           "options": {},
           "is_available": true
         }
