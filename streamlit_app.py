@@ -1,16 +1,11 @@
+import uuid
 import streamlit as st
 from dotenv import load_dotenv
-import os
-from datetime import datetime
-from agent.state import AgentState
-from agent.assistant import phrase
+from agent.runner import run_turn
+from agent.graph import graph
 from user_tools.fetch_menu import fetch_menu
-from user_tools.parse_order_line import parse_order_line
-from user_tools.update_cart import update_cart
-from user_tools.place_order import place_order, save_order_history
 
 load_dotenv()
-SYSTEM_PROMPT = open("agent/system_prompt_restaurant.txt", encoding="utf-8").read()
 
 CURRENCY_SYMBOLS = {"USD": "$", "INR": "₹", "EUR": "€", "GBP": "£"}
 
@@ -30,59 +25,6 @@ GREETING = (
 def fmt_money(amount: float, currency: str) -> str:
     sym = CURRENCY_SYMBOLS.get((currency or "").upper(), "$")
     return f"{sym}{amount:.2f}"
-
-
-def new_state() -> AgentState:
-    return {
-        "user_id": "web-user",
-        "stage": "greet",
-        "cart": [],
-        "subtotal": 0.0,
-        "currency": "USD",
-        "menu_version": "",
-        "last_user_message": "",
-        "last_ai_message": "",
-        "suggested_items": [],
-        "order_id": None,
-        "history_enabled": True,
-        "debug_trace": [],
-        "interrupt_context": {},
-    }
-
-
-def _ops_from_parsed(parsed_items, menu_items):
-    ops = []
-    for p in parsed_items:
-        m = next((i for i in menu_items if i["item_id"] == p["item_id"]), None)
-        if not m:
-            continue
-        ops.append({
-            "op": p.get("op", "add"),
-            "item_id": m["item_id"],
-            "qty": p.get("qty", 1),
-            "name": m["name"],
-            "unit_price": m["price"],
-            "options": p.get("options", {}),
-        })
-    return ops
-
-
-def _warning_reply(warnings, items):
-    sample = ", ".join(f"`{it['name']}`" for it in items[:3])
-    joined = "\n".join(f"- {w}" for w in warnings)
-    return (
-        f"⚠️ I couldn't find some items:\n{joined}\n\n"
-        f"Check the menu on the left, or try items like: {sample}"
-    )
-
-
-def _cart_md(cart, subtotal, currency):
-    lines = ["🧺 **Cart Updated!**"]
-    for it in cart:
-        lines.append(f"- **{it['name']}** × {it['qty']} — {fmt_money(it['qty'] * it['unit_price'], currency)}")
-    lines.append(f"\n**Subtotal: {fmt_money(subtotal, currency)}**")
-    lines.append("\nType `checkout` when ready to place your order!")
-    return "\n".join(lines)
 
 
 def render_menu(items, currency):
@@ -300,17 +242,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Session state ─────────────────────────────────────────────────────────────
-if "state" not in st.session_state:
-    st.session_state.state = new_state()
+if "thread_id" not in st.session_state:
+    st.session_state.thread_id = str(uuid.uuid4())
+if "ag_state" not in st.session_state:
+    st.session_state.ag_state = {}
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": GREETING}]
 
-# ── Load menu ─────────────────────────────────────────────────────────────────
+thread_id = st.session_state.thread_id
+
+# ── Load menu (for left-panel display only) ───────────────────────────────────
 menu_data = fetch_menu()
 items = menu_data["items"]
-active_currency = menu_data["currency"]
-st.session_state.state["currency"] = active_currency
-st.session_state.state["menu_version"] = menu_data["menu_version"]
+active_currency = st.session_state.ag_state.get("currency", menu_data["currency"])
 
 # ── Two-column layout ─────────────────────────────────────────────────────────
 col_menu, col_chat = st.columns([4, 6], gap="large")
@@ -329,22 +273,26 @@ with col_chat:
             with st.chat_message(msg["role"], avatar=avatar):
                 st.markdown(msg["content"])
 
-    # Cart summary
-    state = st.session_state.state
-    cart_label = f"🧺 Your Cart — {len(state['cart'])} item(s)"
-    with st.expander(cart_label, expanded=bool(state["cart"])):
-        if state["cart"]:
-            for it in state["cart"]:
+    # Cart summary (read from graph state)
+    ag = st.session_state.ag_state
+    cart = ag.get("cart", [])
+    subtotal = ag.get("subtotal", 0.0)
+    cart_label = f"🧺 Your Cart — {len(cart)} item(s)"
+
+    with st.expander(cart_label, expanded=bool(cart)):
+        if cart:
+            for it in cart:
                 st.markdown(
                     f"- **{it['name']}** × {it['qty']} — "
                     f"{fmt_money(it['qty'] * it['unit_price'], active_currency)}"
                 )
-            st.markdown(f"**Subtotal: {fmt_money(state['subtotal'], active_currency)}**")
+            st.markdown(f"**Subtotal: {fmt_money(subtotal, active_currency)}**")
             c1, c2 = st.columns(2)
             with c1:
                 if st.button("🗑️ Clear Cart", use_container_width=True):
-                    state["cart"] = []
-                    state["subtotal"] = 0.0
+                    config = {"configurable": {"thread_id": thread_id}}
+                    graph.update_state(config, {"cart": [], "subtotal": 0.0})
+                    st.session_state.ag_state = graph.get_state(config).values
                     st.session_state.messages.append({
                         "role": "assistant",
                         "content": "Cart cleared! Ready to start fresh — what can I get for you?"
@@ -352,20 +300,10 @@ with col_chat:
                     st.rerun()
             with c2:
                 if st.button("✅ Place Order", use_container_width=True):
-                    placed = place_order(state["cart"], state["user_id"], currency=active_currency)
-                    save_order_history(
-                        state["user_id"], placed["order_id"], state["cart"],
-                        placed["total"], placed["currency"], datetime.utcnow().isoformat(),
-                    )
-                    reply = (
-                        f"✅ **Order Confirmed!**\n\n"
-                        f"**Order ID:** `{placed['order_id']}`\n"
-                        f"**ETA:** {placed['eta_minutes']} mins\n"
-                        f"**Total:** {fmt_money(placed['total'], placed['currency'])}\n\n"
-                        "Thank you for choosing Smart Bistro! 🍗 Enjoy your meal!"
-                    )
-                    state["cart"] = []
-                    state["subtotal"] = 0.0
+                    # Drive through the graph: checkout → yes
+                    _, ag1 = run_turn(thread_id, "checkout")
+                    reply, ag2 = run_turn(thread_id, "yes")
+                    st.session_state.ag_state = ag2
                     st.session_state.messages.append({"role": "assistant", "content": reply})
                     st.rerun()
         else:
@@ -375,68 +313,9 @@ with col_chat:
     user_input = st.chat_input("What would you like to order?")
     if user_input:
         user_input = user_input.strip().lstrip("\ufeff")
-        state["last_user_message"] = user_input
         st.session_state.messages.append({"role": "user", "content": user_input})
 
-        cmd = user_input.lower()
-
-        if cmd in {"show menu", "menu"}:
-            reply = "The full menu is displayed on the left! Just tell me what you'd like."
-
-        elif cmd in {"show cart", "cart"}:
-            if state["cart"]:
-                lines = ["🧺 **Your Cart**"]
-                for it in state["cart"]:
-                    lines.append(
-                        f"- **{it['name']}** × {it['qty']} — "
-                        f"{fmt_money(it['qty'] * it['unit_price'], active_currency)}"
-                    )
-                lines.append(f"\n**Subtotal: {fmt_money(state['subtotal'], active_currency)}**")
-                lines.append("\nType `checkout` to place your order!")
-                reply = "\n".join(lines)
-            else:
-                reply = "Your cart is empty. Check the menu on the left and add some items!"
-
-        elif cmd in {"checkout", "done", "confirm", "place order"}:
-            if state["cart"]:
-                placed = place_order(state["cart"], state["user_id"], currency=active_currency)
-                save_order_history(
-                    state["user_id"], placed["order_id"], state["cart"],
-                    placed["total"], placed["currency"], datetime.utcnow().isoformat(),
-                )
-                reply = (
-                    f"✅ **Order Confirmed!**\n\n"
-                    f"**Order ID:** `{placed['order_id']}`\n"
-                    f"**ETA:** {placed['eta_minutes']} mins\n"
-                    f"**Total:** {fmt_money(placed['total'], placed['currency'])}\n\n"
-                    "Thank you for choosing Smart Bistro! 🍗 Enjoy your meal!"
-                )
-                state["cart"] = []
-                state["subtotal"] = 0.0
-            else:
-                reply = "Your cart is empty. Add some items from the menu first!"
-
-        else:
-            parsed = parse_order_line(user_input, items)
-            if parsed["parsed"]:
-                ops = _ops_from_parsed(parsed["parsed"], items)
-                res = update_cart(state["cart"], active_currency, ops)
-                state["cart"] = res["cart"]
-                state["subtotal"] = res["subtotal"]
-                reply = _cart_md(state["cart"], state["subtotal"], active_currency)
-                if parsed["warnings"]:
-                    reply = _warning_reply(parsed["warnings"], items) + "\n\n" + reply
-            elif parsed["warnings"]:
-                reply = _warning_reply(parsed["warnings"], items)
-            else:
-                reply = (
-                    "I didn't quite catch that. Try ordering by item name, for example:\n"
-                    "- `1 Classic Crispy Sandwich Meal`\n"
-                    "- `2 Waffle Fries Medium`\n"
-                    "- `remove Sweet Tea Medium`\n\n"
-                    "Or type `show cart` or `checkout`."
-                )
-
-        final_reply = phrase(SYSTEM_PROMPT, reply)
-        st.session_state.messages.append({"role": "assistant", "content": final_reply})
+        reply, ag_state = run_turn(thread_id, user_input)
+        st.session_state.ag_state = ag_state
+        st.session_state.messages.append({"role": "assistant", "content": reply})
         st.rerun()
