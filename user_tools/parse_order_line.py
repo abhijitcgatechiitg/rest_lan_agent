@@ -1,5 +1,5 @@
 import re
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 NUMBER_WORDS = {
     "a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4,
@@ -27,7 +27,7 @@ def _qty_from_text_segment(seg: str) -> int:
     return 1
 
 
-def find_by_name_or_id(name_or_id: str, menu_items: List[Dict]) -> str | None:
+def find_by_name_or_id(name_or_id: str, menu_items: List[Dict]) -> Optional[str]:
     key = name_or_id.strip().lower()
     if not key:
         return None

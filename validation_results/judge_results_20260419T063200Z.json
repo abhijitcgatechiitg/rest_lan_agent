@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "timestamp": "20260419T063200Z",
+    "agent_model": "claude-3-haiku-20240307",
+    "judge_model": "claude-haiku-4-5-20251001",
+    "runs_per_scenario": 3,
+    "pass_threshold_mean": 7.0,
+    "pass_threshold_std": 1.5
+  },
+  "results": [
+    {
+      "scenario_id": "J-01",
+      "scenario_name": "Menu Display Accuracy",
+      "dimensions": [
+        "Accuracy",
+        "Completeness",
+        "Format Clarity"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "agent_response": "\ud83d\udcd6 **Smart Bistro Menu**\n\n**\ud83c\udf57 Original Meals**\n  \u2022 Classic Crispy Sandwich Meal \u2014 $8.99  _1030 cal_\n  \u2022 Classic Crispy Deluxe Meal \u2014 $9.49  _1090 cal_\n  \u2022 Fiery Crispy Sandwich Meal \u2014 $9.25  _1050 cal_\n  \u2022 Fiery Crispy Deluxe Meal \u2014 $9.99  _1120 cal_\n  \u2022 Golden Tenders 8pc Meal \u2014 $8.99  _860 cal_\n  \u2022 Golden Tenders 12pc Meal \u2014 $10.99  _990 cal_\n  \u2022 Crispy Strips 3pc Meal \u2014 $9.49  _910 cal_\n  \u2022 Crispy Strips 4pc Meal \u2014 $10.75  _1020 cal_\n\n**\ud83e\uddd2 Kids Meals**\n  \u2022 Crispy Bites Kids Meal \u2014 $5.99  _530 cal_\n  \u2022 Grilled Bites Kids Meal \u2014 $6.49  _280 cal_\n  \u2022 Mini Strips Kids Meal \u2014 $6.25  _440 cal_\n\n**\ud83c\udf5f Waffle Fries**\n  \u2022 Waffle Fries Medium \u2014 $2.49  _420 cal_\n  \u2022 Waffle Fries Large \u2014 $2.99  _600 cal_\n\n**\ud83e\udd64 Drinks**\n  \u2022 Sweet Tea Medium \u2014 $2.25  _120 cal_\n  \u2022 Sweet Tea Large \u2014 $2.65  _170 cal_\n  \u2022 Fresh Lemonade Medium \u2014 $2.59  _220 cal_\n  \u2022 Fresh Lemonade Large \u2014 $2.99  _300 cal_\n  \u2022 Sunny Blend Medium \u2014 $2.59  _170 cal_\n  \u2022 Sunny Blend Large \u2014 $2.99  _270 cal_\n  \u2022 Fountain Drink Medium \u2014 $2.25  _210 cal_\n  \u2022 Fountain Drink Large \u2014 $2.65  _340 cal_\n  \u2022 Cold Brew Coffee \u2014 $3.29  _15 cal_\n  \u2022 Orange Juice \u2014 $2.99  _160 cal_\n  \u2022 Bottled Water \u2014 $1.99\n\nWhat would you like to order?",
+          "judge_raw": {
+            "scores": {
+              "Accuracy": 10,
+              "Completeness": 10,
+              "Format Clarity": 10
+            },
+            "rationale": {
+              "Accuracy": "All spot-checked prices match ground truth exactly (Classic Crispy Sandwich Meal $8.99, Waffle Fries Medium $2.49, Sweet Tea Medium $2.25), and all item names are correct with no fabricated details.",
+              "Completeness": "All 4 required categories are present with complete item counts (8 Original Meals, 3 Kids Meals, 2 Waffle Fries, 11 Drinks), every item has a name and price, and the response ends with an engagement prompt.",
+              "Format Clarity": "The response uses clear hierarchical structure with emoji headers, bullet points for items, consistent price formatting, and helpful calorie information; easy to scan and read."
+            }
+          },
+          "scores": {
+            "Accuracy": 10,
+            "Completeness": 10,
+            "Format Clarity": 10
+          },
+          "rationale": {
+            "Accuracy": "All spot-checked prices match ground truth exactly (Classic Crispy Sandwich Meal $8.99, Waffle Fries Medium $2.49, Sweet Tea Medium $2.25), and all item names are correct with no fabricated details.",
+            "Completeness": "All 4 required categories are present with complete item counts (8 Original Meals, 3 Kids Meals, 2 Waffle Fries, 11 Drinks), every item has a name and price, and the response ends with an engagement prompt.",
+            "Format Clarity": "The response uses clear hierarchical structure with emoji headers, bullet points for items, consistent price formatting, and helpful calorie information; easy to scan and read."
+          }
+        },
+        {
+          "run": 2,
+          "agent_response": "\ud83d\udcd6 **Smart Bistro Menu**\n\n**\ud83c\udf57 Original Meals**\n  \u2022 Classic Crispy Sandwich Meal \u2014 $8.99  _1030 cal_\n  \u2022 Classic Crispy Deluxe Meal \u2014 $9.49  _1090 cal_\n  \u2022 Fiery Crispy Sandwich Meal \u2014 $9.25  _1050 cal_\n  \u2022 Fiery Crispy Deluxe Meal \u2014 $9.99  _1120 cal_\n  \u2022 Golden Tenders 8pc Meal \u2014 $8.99  _860 cal_\n  \u2022 Golden Tenders 12pc Meal \u2014 $10.99  _990 cal_\n  \u2022 Crispy Strips 3pc Meal \u2014 $9.49  _910 cal_\n  \u2022 Crispy Strips 4pc Meal \u2014 $10.75  _1020 cal_\n\n**\ud83e\uddd2 Kids Meals**\n  \u2022 Crispy Bites Kids Meal \u2014 $5.99  _530 cal_\n  \u2022 Grilled Bites Kids Meal \u2014 $6.49  _280 cal_\n  \u2022 Mini Strips Kids Meal \u2014 $6.25  _440 cal_\n\n**\ud83c\udf5f Waffle Fries**\n  \u2022 Waffle Fries Medium \u2014 $2.49  _420 cal_\n  \u2022 Waffle Fries Large \u2014 $2.99  _600 cal_\n\n**\ud83e\udd64 Drinks**\n  \u2022 Sweet Tea Medium \u2014 $2.25  _120 cal_\n  \u2022 Sweet Tea Large \u2014 $2.65  _170 cal_\n  \u2022 Fresh Lemonade Medium \u2014 $2.59  _220 cal_\n  \u2022 Fresh Lemonade Large \u2014 $2.99  _300 cal_\n  \u2022 Sunny Blend Medium \u2014 $2.59  _170 cal_\n  \u2022 Sunny Blend Large \u2014 $2.99  _270 cal_\n  \u2022 Fountain Drink Medium \u2014 $2.25  _210 cal_\n  \u2022 Fountain Drink Large \u2014 $2.65  _340 cal_\n  \u2022 Cold Brew Coffee \u2014 $3.29  _15 cal_\n  \u2022 Orange Juice \u2014 $2.99  _160 cal_\n  \u2022 Bottled Water \u2014 $1.99\n\nWhat would you like to order?",
+          "judge_raw": {
+            "scores": {
+              "Accuracy": 10,
+              "Completeness": 10,
+              "Format Clarity": 10
+            },
+            "rationale": {
+              "Accuracy": "All spot-check items match ground truth prices exactly (Classic Crispy Sandwich Meal $8.99, Waffle Fries Medium $2.49, Sweet Tea Medium $2.25), and no factual errors detected in item names or pricing.",
+              "Completeness": "All 4 required categories are present with correct item counts (Original Meals: 8, Kids Meals: 3, Waffle Fries: 2, Drinks: 11), and every item includes name and USD price as required.",
+              "Format Clarity": "Response is exceptionally well-structured with clear category headers using emojis, consistent bullet-point formatting, organized spacing, and bonus calorie information that enhances readability without cluttering the layout."
+            }
+          },
+          "scores": {
+            "Accuracy": 10,
+            "Completeness": 10,
+            "Format Clarity": 10
+          },
+          "rationale": {
+            "Accuracy": "All spot-check items match ground truth prices exactly (Classic Crispy Sandwich Meal $8.99, Waffle Fries Medium $2.49, Sweet Tea Medium $2.25), and no factual errors detected in item names or pricing.",
+            "Completeness": "All 4 required categories are present with correct item counts (Original Meals: 8, Kids Meals: 3, Waffle Fries: 2, Drinks: 11), and every item includes name and USD price as required.",
+            "Format Clarity": "Response is exceptionally well-structured with clear category headers using emojis, consistent bullet-point formatting, organized spacing, and bonus calorie information that enhances readability without cluttering the layout."
+          }
+        },
+        {
+          "run": 3,
+          "agent_response": "\ud83d\udcd6 **Smart Bistro Menu**\n\n**\ud83c\udf57 Original Meals**\n  \u2022 Classic Crispy Sandwich Meal \u2014 $8.99  _1030 cal_\n  \u2022 Classic Crispy Deluxe Meal \u2014 $9.49  _1090 cal_\n  \u2022 Fiery Crispy Sandwich Meal \u2014 $9.25  _1050 cal_\n  \u2022 Fiery Crispy Deluxe Meal \u2014 $9.99  _1120 cal_\n  \u2022 Golden Tenders 8pc Meal \u2014 $8.99  _860 cal_\n  \u2022 Golden Tenders 12pc Meal \u2014 $10.99  _990 cal_\n  \u2022 Crispy Strips 3pc Meal \u2014 $9.49  _910 cal_\n  \u2022 Crispy Strips 4pc Meal \u2014 $10.75  _1020 cal_\n\n**\ud83e\uddd2 Kids Meals**\n  \u2022 Crispy Bites Kids Meal \u2014 $5.99  _530 cal_\n  \u2022 Grilled Bites Kids Meal \u2014 $6.49  _280 cal_\n  \u2022 Mini Strips Kids Meal \u2014 $6.25  _440 cal_\n\n**\ud83c\udf5f Waffle Fries**\n  \u2022 Waffle Fries Medium \u2014 $2.49  _420 cal_\n  \u2022 Waffle Fries Large \u2014 $2.99  _600 cal_\n\n**\ud83e\udd64 Drinks**\n  \u2022 Sweet Tea Medium \u2014 $2.25  _120 cal_\n  \u2022 Sweet Tea Large \u2014 $2.65  _170 cal_\n  \u2022 Fresh Lemonade Medium \u2014 $2.59  _220 cal_\n  \u2022 Fresh Lemonade Large \u2014 $2.99  _300 cal_\n  \u2022 Sunny Blend Medium \u2014 $2.59  _170 cal_\n  \u2022 Sunny Blend Large \u2014 $2.99  _270 cal_\n  \u2022 Fountain Drink Medium \u2014 $2.25  _210 cal_\n  \u2022 Fountain Drink Large \u2014 $2.65  _340 cal_\n  \u2022 Cold Brew Coffee \u2014 $3.29  _15 cal_\n  \u2022 Orange Juice \u2014 $2.99  _160 cal_\n  \u2022 Bottled Water \u2014 $1.99\n\nWhat would you like to order?",
+          "judge_raw": {
+            "scores": {
+              "Accuracy": 10,
+              "Completeness": 10,
+              "Format Clarity": 10
+            },
+            "rationale": {
+              "Accuracy": "All spot-checked prices match ground truth exactly ($8.99 Classic Crispy Sandwich Meal, $2.49 Waffle Fries Medium, $2.25 Sweet Tea Medium), item names are correct, and all 24 items across 4 categories are present with accurate pricing.",
+              "Completeness": "All 4 required categories are present with complete item listings: 8 Original Meals, 3 Kids Meals, 2 Waffle Fries, and 11 Drinks; every item includes name and price as required.",
+              "Format Clarity": "The response is exceptionally well-structured with clear category headers using emojis, consistent bullet-point formatting, line breaks between sections, and additional helpful calorie information; easy to scan and navigate."
+            }
+          },
+          "scores": {
+            "Accuracy": 10,
+            "Completeness": 10,
+            "Format Clarity": 10
+          },
+          "rationale": {
+            "Accuracy": "All spot-checked prices match ground truth exactly ($8.99 Classic Crispy Sandwich Meal, $2.49 Waffle Fries Medium, $2.25 Sweet Tea Medium), item names are correct, and all 24 items across 4 categories are present with accurate pricing.",
+            "Completeness": "All 4 required categories are present with complete item listings: 8 Original Meals, 3 Kids Meals, 2 Waffle Fries, and 11 Drinks; every item includes name and price as required.",
+            "Format Clarity": "The response is exceptionally well-structured with clear category headers using emojis, consistent bullet-point formatting, line breaks between sections, and additional helpful calorie information; easy to scan and navigate."
+          }
+        }
+      ],
+      "aggregated": {
+        "Accuracy": {
+          "scores": [
+            10,
+            10,
+            10
+          ],
+          "mean": 10,
+          "std": 0.0,
+          "pass": true
+        },
+        "Completeness": {
+          "scores": [
+            10,
+            10,
+            10
+          ],
+          "mean": 10,
+          "std": 0.0,
+          "pass": true
+        },
+        "Format Clarity": {
+          "scores": [
+            10,
+            10,
+            10
+          ],
+          "mean": 10,
+          "std": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario_id": "J-02",
+      "scenario_name": "Order Flow \u2014 Happy Path End-to-End",
+      "dimensions": [
+        "Accuracy",
+        "Completeness",
+        "Consistency"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "agent_response": "\u2705 **Order Confirmed!**\n\n**Order ID:** `ORD-1776594732`\n**ETA:** 30 mins\n**Total:** $7.23\n\nThank you for choosing Smart Bistro! \ud83c\udf57",
+          "judge_raw": {
+            "scores": {
+              "Accuracy": 10,
+              "Completeness": 10,
+              "Consistency": 10
+            },
+            "rationale": {
+              "Accuracy": "All factual claims are correct: order ID matches ORD- pattern, total is exactly $7.23, and ETA is 30 minutes as required.",
+              "Completeness": "Response includes all three required elements: properly formatted order ID, correct total amount, and 30-minute ETA.",
+              "Consistency": "The confirmation directly addresses the user's affirmative input ('yes') and logically concludes the order flow without contradicting prior context."
+            }
+          },
+          "scores": {
+            "Accuracy": 10,
+            "Completeness": 10,
+            "Consistency": 10
+          },
+          "rationale": {
+            "Accuracy": "All factual claims are correct: order ID matches ORD- pattern, total is exactly $7.23, and ETA is 30 minutes as required.",
+            "Completeness": "Response includes all three required elements: properly formatted order ID, correct total amount, and 30-minute ETA.",
+            "Consistency": "The confirmation directly addresses the user's affirmative input ('yes') and logically concludes the order flow without contradicting prior context."
+          }
+        },
+        {
+          "run": 2,
+          "agent_response": "\u2705 **Order Confirmed!**\n\n**Order ID:** `ORD-1776594736`\n**ETA:** 30 mins\n**Total:** $7.23\n\nThank you for choosing Smart Bistro! \ud83c\udf57",
+          "judge_raw": {
+            "scores": {
+              "Accuracy": 10,
+              "Completeness": 10,
+              "Consistency": 10
+            },
+            "rationale": {
+              "Accuracy": "All factual claims are correct: order ID matches ORD-<digits> pattern, total is exactly $7.23, and ETA is 30 minutes as required.",
+              "Completeness": "Response includes all three required elements: properly formatted order ID, correct total amount, and 30-minute ETA.",
+              "Consistency": "The confirmation aligns perfectly with the expected happy-path flow and addresses the user's affirmative input ('yes') with an appropriate order confirmation."
+            }
+          },
+          "scores": {
+            "Accuracy": 10,
+            "Completeness": 10,
+            "Consistency": 10
+          },
+          "rationale": {
+            "Accuracy": "All factual claims are correct: order ID matches ORD-<digits> pattern, total is exactly $7.23, and ETA is 30 minutes as required.",
+            "Completeness": "Response includes all three required elements: properly formatted order ID, correct total amount, and 30-minute ETA.",
+            "Consistency": "The confirmation aligns perfectly with the expected happy-path flow and addresses the user's affirmative input ('yes') with an appropriate order confirmation."
+          }
+        },
+        {
+          "run": 3,
+          "agent_response": "\u2705 **Order Confirmed!**\n\n**Order ID:** `ORD-1776594740`\n**ETA:** 30 mins\n**Total:** $7.23\n\nThank you for choosing Smart Bistro! \ud83c\udf57",
+          "judge_raw": {
+            "scores": {
+              "Accuracy": 10,
+              "Completeness": 10,
+              "Consistency": 10
+            },
+            "rationale": {
+              "Accuracy": "All factual claims are correct: order ID matches ORD-<digits> pattern, total is exactly $7.23, and ETA is 30 minutes as required.",
+              "Completeness": "Response includes all three required elements: properly formatted order ID, correct total, and 30-minute ETA.",
+              "Consistency": "Response logically follows the user's affirmative confirmation ('yes') and completes the expected happy-path order flow without contradictions."
+            }
+          },
+          "scores": {
+            "Accuracy": 10,
+            "Completeness": 10,
+            "Consistency": 10
+          },
+          "rationale": {
+            "Accuracy": "All factual claims are correct: order ID matches ORD-<digits> pattern, total is exactly $7.23, and ETA is 30 minutes as required.",
+            "Completeness": "Response includes all three required elements: properly formatted order ID, correct total, and 30-minute ETA.",
+            "Consistency": "Response logically follows the user's affirmative confirmation ('yes') and completes the expected happy-path order flow without contradictions."
+          }
+        }
+      ],
+      "aggregated": {
+        "Accuracy": {
+          "scores": [
+            10,
+            10,
+            10
+          ],
+          "mean": 10,
+          "std": 0.0,
+          "pass": true
+        },
+        "Completeness": {
+          "scores": [
+            10,
+            10,
+            10
+          ],
+          "mean": 10,
+          "std": 0.0,
+          "pass": true
+        },
+        "Consistency": {
+          "scores": [
+            10,
+            10,
+            10
+          ],
+          "mean": 10,
+          "std": 0.0,
+          "pass": true
+        }
+      }
+    },
+    {
+      "scenario_id": "J-03",
+      "scenario_name": "Off-Topic FAQ \u2014 Dietary Question",
+      "dimensions": [
+        "Helpfulness",
+        "Persona Adherence",
+        "Hallucination Avoidance"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "agent_response": "Hello! Welcome to Smart Bistro. Unfortunately, we don't have any specifically gluten-free menu items at the moment. However, our Classic Crispy Sandwich, Fiery Crispy Sandwich, and Crispy Strips can all be ordered without the bun to make them gluten-free friendly. \n\nWould you like me to go over our full menu with you? I'd be happy to suggest some other options that may work for your dietary needs. Just let me know what you're in the mood for and I'll do my best to accommodate.",
+          "judge_raw": {
+            "scores": {
+              "Helpfulness": 5,
+              "Persona Adherence": 9,
+              "Hallucination Avoidance": 4
+            },
+            "rationale": {
+              "Helpfulness": "The response attempts to assist by suggesting modifications (removing buns), which is helpful in principle, but without knowing if these items actually exist on the menu or if this modification is operationally feasible, the advice may not be reliably actionable.",
+              "Persona Adherence": "The agent maintains a warm, professional bistro-assistant tone throughout, stays in character, and appropriately offers further assistance with menu exploration.",
+              "Hallucination Avoidance": "The agent invents specific menu item names (Classic Crispy Sandwich, Fiery Crispy Sandwich, Crispy Strips) and proposes modifications without confirmation these items exist in the GROUND TRUTH menu data, which explicitly does not provide item listings."
+            }
+          },
+          "scores": {
+            "Helpfulness": 5,
+            "Persona Adherence": 9,
+            "Hallucination Avoidance": 4
+          },
+          "rationale": {
+            "Helpfulness": "The response attempts to assist by suggesting modifications (removing buns), which is helpful in principle, but without knowing if these items actually exist on the menu or if this modification is operationally feasible, the advice may not be reliably actionable.",
+            "Persona Adherence": "The agent maintains a warm, professional bistro-assistant tone throughout, stays in character, and appropriately offers further assistance with menu exploration.",
+            "Hallucination Avoidance": "The agent invents specific menu item names (Classic Crispy Sandwich, Fiery Crispy Sandwich, Crispy Strips) and proposes modifications without confirmation these items exist in the GROUND TRUTH menu data, which explicitly does not provide item listings."
+          }
+        },
+        {
+          "run": 2,
+          "agent_response": "Hello! Welcome to Smart Bistro. \ud83c\udf7d\ufe0f Unfortunately, we don't have any specifically gluten-free menu items. However, our Grilled Bites Kids Meal and Crispy Strips could potentially be modified to be gluten-free if you request them without the breading. \n\nWould you like me to go over our full menu options with you? I'm happy to provide details on our Original Meals, Kids Meals, Waffle Fries, and Drinks. Just let me know what you'd like to hear more about.",
+          "judge_raw": {
+            "scores": {
+              "Helpfulness": 6,
+              "Persona Adherence": 9,
+              "Hallucination Avoidance": 5
+            },
+            "rationale": {
+              "Helpfulness": "The response attempts to help by suggesting items that might work, but the advice to remove breading from fried items is potentially misleading since cross-contamination and preparation methods matter for true gluten-free needs; a better suggestion would be to consult with staff.",
+              "Persona Adherence": "The agent maintains a friendly, professional bistro-assistant tone throughout, uses appropriate branding ('Smart Bistro'), and stays in character while addressing the dietary question.",
+              "Hallucination Avoidance": "The response mentions 'Grilled Bites Kids Meal' which is not confirmed in the GROUND TRUTH menu data, and makes specific claims about modification possibilities without verification against the actual menu or restaurant policies."
+            }
+          },
+          "scores": {
+            "Helpfulness": 6,
+            "Persona Adherence": 9,
+            "Hallucination Avoidance": 5
+          },
+          "rationale": {
+            "Helpfulness": "The response attempts to help by suggesting items that might work, but the advice to remove breading from fried items is potentially misleading since cross-contamination and preparation methods matter for true gluten-free needs; a better suggestion would be to consult with staff.",
+            "Persona Adherence": "The agent maintains a friendly, professional bistro-assistant tone throughout, uses appropriate branding ('Smart Bistro'), and stays in character while addressing the dietary question.",
+            "Hallucination Avoidance": "The response mentions 'Grilled Bites Kids Meal' which is not confirmed in the GROUND TRUTH menu data, and makes specific claims about modification possibilities without verification against the actual menu or restaurant policies."
+          }
+        },
+        {
+          "run": 3,
+          "agent_response": "Hello! Welcome to Smart Bistro. \ud83c\udf57 Unfortunately, we don't have any specifically gluten-free menu items at the moment. Our menu is focused on classic fried chicken dishes and sides.\n\nHowever, I'd be happy to suggest some options that may work for you:\n\n- The Grilled Bites from our Kids Meal section are made with grilled chicken and don't contain any breading.\n- You could also order a salad or our Waffle Fries as a side.\n- And many of our drinks, like the Sweet Tea, Lemonade, or Bottled Water, are gluten-free.\n\nLet me know if you have any other dietary needs and I'll do my best to accommodate. How else can I help you today?",
+          "judge_raw": {
+            "scores": {
+              "Helpfulness": 6,
+              "Persona Adherence": 9,
+              "Hallucination Avoidance": 4
+            },
+            "rationale": {
+              "Helpfulness": "The agent attempts to suggest alternatives and acknowledges the constraint, but makes unverified claims about gluten content that could mislead a customer with celiac disease or severe gluten sensitivity, reducing practical helpfulness.",
+              "Persona Adherence": "The agent maintains a friendly, professional bistro-assistant tone throughout, stays in character, and appropriately offers further assistance in a warm manner consistent with the role.",
+              "Hallucination Avoidance": "The agent invents specific menu items not confirmed in ground truth (e.g., 'Grilled Bites from our Kids Meal section') and makes unfounded certifications (claiming drinks are gluten-free without verification), both serious hallucinations for a dietary question."
+            }
+          },
+          "scores": {
+            "Helpfulness": 6,
+            "Persona Adherence": 9,
+            "Hallucination Avoidance": 4
+          },
+          "rationale": {
+            "Helpfulness": "The agent attempts to suggest alternatives and acknowledges the constraint, but makes unverified claims about gluten content that could mislead a customer with celiac disease or severe gluten sensitivity, reducing practical helpfulness.",
+            "Persona Adherence": "The agent maintains a friendly, professional bistro-assistant tone throughout, stays in character, and appropriately offers further assistance in a warm manner consistent with the role.",
+            "Hallucination Avoidance": "The agent invents specific menu items not confirmed in ground truth (e.g., 'Grilled Bites from our Kids Meal section') and makes unfounded certifications (claiming drinks are gluten-free without verification), both serious hallucinations for a dietary question."
+          }
+        }
+      ],
+      "aggregated": {
+        "Helpfulness": {
+          "scores": [
+            5,
+            6,
+            6
+          ],
+          "mean": 5.67,
+          "std": 0.58,
+          "pass": false
+        },
+        "Persona Adherence": {
+          "scores": [
+            9,
+            9,
+            9
+          ],
+          "mean": 9,
+          "std": 0.0,
+          "pass": true
+        },
+        "Hallucination Avoidance": {
+          "scores": [
+            4,
+            5,
+            4
+          ],
+          "mean": 4.33,
+          "std": 0.58,
+          "pass": false
+        }
+      }
+    }
+  ]
+}

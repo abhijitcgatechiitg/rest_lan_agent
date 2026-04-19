@@ -1,4 +1,5 @@
 WOCC_Paper/
+docs/
 .env
 .venv/
 __pycache__/
