@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+docs/
+WOCC_Paper/
+validation_results/
+data/order_history.json
+tests/
+*.log
+.pytest_cache/

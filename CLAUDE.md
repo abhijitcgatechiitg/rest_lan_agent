@@ -55,7 +55,7 @@ python main.py                       # CLI
 ```
 ANTHROPIC_API_KEY=...            # Claude API key
 USE_LLM=true                     # Set false to skip Claude response phrasing
-MODEL_NAME=claude-3-haiku-20240307
+MODEL_NAME=claude-haiku-4-5-20251001
 CURRENCY=USD
 ```
 
